@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>react2</title>
+    <link rel="stylesheet" src="styles.css">
+    <script src="https://unpkg.com/react@latest/dist/react.js"></script>
+    <script src="https://unpkg.com/react-dom@latest/dist/react-dom.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
+  </head>
+  <body>
+    <h2>To Do</h2>
+    <div id="placeWhereRendered"></div>
+    <script type="text/babel">
+
+    class ListParty extends React.Component{
+
+    render(){
+      console.log(this.state)
+
+//creating objects to control styling, which is...fine I guess...
+      const styleObj={
+        background: "#72BAD5",
+        width: "100%",
+        margin: "auto",
+        padding: "10% 5%"
+      }
+
+      const listStyleObj={
+        width: "80%",
+        margin: "auto",
+        listStyleType: "none"
+      }
+
+
+      console.log(styleObj);
+
+      return(
+        <section style={styleObj} id="listContainer">
+        <input></input>
+        <ul style={listStyleObj} id="ToDos">
+        <li>{this.props.toDo}</li>
+        </ul>
+        </section>
+      );
+    }
+}
+
+ReactDOM.render(<ListParty name="Butters"/>, document.getElementById('placeWhereRendered')); //Butters is a prop here. Goes within the self closing tags. It's something that's reusable.
