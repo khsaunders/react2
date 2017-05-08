@@ -9,41 +9,63 @@
     <script src="https://unpkg.com/babel-standalone@6.15.0/babel.min.js"></script>
   </head>
   <body>
-    <h2>To Do</h2>
     <div id="placeWhereRendered"></div>
     <script type="text/babel">
 
-    class ListParty extends React.Component{
+//proper way to create components in ES 2015, different from my first react repo
+
+//toDoApp is the general container component I think. It will hold all of the other components.
+    class toDoApp extends React.Component{
+      constructor (){
+        super(); //still don't know what all this business is
+      }
 
     render(){
-      console.log(this.state)
-
-//creating objects to control styling, which is...fine I guess...
-      const styleObj={
-        background: "#72BAD5",
-        width: "100%",
-        margin: "auto",
-        padding: "10% 5%"
-      }
-
-      const listStyleObj={
-        width: "80%",
-        margin: "auto",
-        listStyleType: "none"
-      }
-
-
-      console.log(styleObj);
-
       return(
-        <section style={styleObj} id="listContainer">
-        <input></input>
-        <ul style={listStyleObj} id="ToDos">
-        <li>{this.props.toDo}</li>
-        </ul>
-        </section>
+        <div id="toDoContainer">
+          <h1>To Do List</h1>
+          <AddNewTask />//this is the name of our first component
+          <ToDoAppList />//here is our second component
+        </div>
       );
     }
 }
 
-ReactDOM.render(<ListParty name="Butters"/>, document.getElementById('placeWhereRendered')); //Butters is a prop here. Goes within the self closing tags. It's something that's reusable.
+//controller (component) to create a new task
+class AddNewTask extends React.Component{
+  constructor(){
+    super();
+
+  }
+
+  render() {
+    return (
+      <form>
+        <input type="text" />
+      </form>
+    )
+  }
+}
+
+class ToDoAppList extends React.Component{
+  constructor(){
+    super();
+
+  }
+
+  render() {
+    // items= this.props.tasks.map(() => return <li>items) //as of right now, browser will not accept this => thing
+    return (
+      <ul>
+        <li> Task 1</li>
+        <li> Task 2</li>
+        <li> Task 3 </li>
+      </ul>
+    )
+  }
+}
+
+
+
+
+ReactDOM.render(<toDoApp />, document.getElementById('placeWhereRendered')); //Butters is a prop here. Goes within the self closing tags. It's something that's reusable.
